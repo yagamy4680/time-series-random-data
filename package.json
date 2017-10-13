@@ -1,0 +1,30 @@
+{
+  "name": "time-series-random-data",
+  "author": {
+    "name": [
+      "Yagamy"
+    ],
+    "email": "yagamy@t2t.io"
+  },
+  "description": "Generate random time-series data, and serialize them with different appenders",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "main": "app.ls",
+  "engines": {
+    "node": "4.4.x",
+    "npm": "2.x"
+  },
+  "dependencies": {
+    "colors": "*",
+    "moment": "*",
+    "prettyjson": "*",
+    "request": "*",
+    "yargs": "*",
+    "js-yaml": "*"
+  },
+  "devDependencies": {},
+  "optionalDependencies": {}
+}
