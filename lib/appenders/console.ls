@@ -4,13 +4,15 @@ require! <[colors moment]>
 BaseAppender = require \./base
 
 module.exports = exports = class Appender extends BaseAppender
-  (@opts) ->
+  (@args) ->
     super ...
     return
 
-  init: (@out) ->
-    @output = if out is \stdout then process.stdout else process.stderr
-    return @
+  init: (done) ->
+    {args} = self = @
+    [out] = args
+    self.output = if out is \stdout then process.stdout else process.stderr
+    return done!
 
   append-internal: (timestamp, node, board_type, board_id, sensor_type, sensor_id, points) ->
     {output} = self = @

@@ -4,11 +4,11 @@
 #
 
 class BaseAppender
-  ->
+  (args) ->
     return
 
-  init: ->
-    return
+  init: (done) ->
+    return done!
 
   append-internal: (timestamp, node, board_type, board_id, sensor_type, sensor_id, points) ->
     return

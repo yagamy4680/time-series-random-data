@@ -27,12 +27,22 @@ PARSE_PAST_STRING = (past) ->
   return [null, number, string]
 
 
-INITIALIATE_APPENDER = (string) ->
+LOAD_APPENDER_CLASS = (name) ->
+  return null unless name in <[console ifdb130]>
+  return (require \./lib/appenders/console) if name is \console
+  return (require \./lib/appenders/ifdb130) if name is \ifdb130
+
+
+INITIALIATE_APPENDER = (string, done) ->
   yargs.reset!
   xs = string.split ' '
-  clazz = xs.shift!
-  return (new (require \./lib/appenders/console)).init xs if clazz is \console
-  return ERROR_EXIT 2, "no such appender: #{clazz}"
+  name = xs.shift!
+  clazz = LOAD_APPENDER_CLASS name
+  return done "no such appender: #{name}" unless clazz?
+  appender = new clazz xs
+  (err) <- appender.init
+  return done err if err?
+  return done null, appender
 
 
 RUN_WITHOUT_TIMER = (runners, appender, past) ->
@@ -84,7 +94,7 @@ xs = { [x[0],x[1]] for x in xs }
 console.log "metadata => #{JSON.stringify xs}"
 runners = [ new Runner c, xs for c in doc.collections ]
 
-appender = INITIALIATE_APPENDER argv.appender
-
+(init-err, appender) <- INITIALIATE_APPENDER argv.appender
+return ERROR_EXIT 2, init-err if init-err?
 return RUN_WITH_TIMER runners, appender if past is \future
 return RUN_WITHOUT_TIMER runners, appender, past
