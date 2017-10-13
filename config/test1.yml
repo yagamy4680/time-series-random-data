@@ -1,0 +1,51 @@
+
+collections:
+
+  - metadata: process/python/stats/001
+    delay: 1
+    period: 4
+    points:
+      - [ cpu   , '%', simple-random, true, 0, 2, 5 ]
+      - [ memory, '%', simple-random, true, 0, 1, 3 ]
+
+  - metadata: process/node/sensor-web/001
+    delay: 2
+    period: 4
+    points:
+      - [ cpu   , '%', simple-random, true, 0, 2, 5 ]
+      - [ memory, '%', simple-random, true, 0, 1, 3 ]
+
+  - metadata: sensorboard/ttyO4/sht-30/000
+    delay: 6
+    period: 10
+    points:
+      #   data-type    unit        generator  fixed digits  min  max delta  ratio
+      - [ temperature,   °C, periodic-random, false,     1,  20,  35,    1,  0.80 ]
+      - [ humidity   ,'%rH', periodic-random, true,      0,  50,  80,    5,  0.75 ]
+
+  - metadata: sensorboard/ttyO4/sht-30/001
+    delay: 7
+    period: 10
+    points:
+      #   data-type    unit        generator  fixed digits  min  max delta  ratio
+      - [ temperature,   °C, periodic-random, false,     1,  15,  30,    1,  0.60 ]
+      - [ humidity   ,'%rH', periodic-random, true,      0,  40,  70,    5,  0.60 ]
+
+
+# F00010001
+#
+# process/python/stats/cpu
+# process/python/stats/memory
+#
+# process/node/sensor-web/cpu
+# process/node/sensor-web/memory
+#
+#
+#
+#1507883310066
+#1507883310066ms
+#
+#1507883406779
+#1507883586779ms
+#1434055562000
+#000000
